@@ -1,10 +1,8 @@
 #!/usr/bin/tclsh
 package require Tk
 #TODO scrollbar
-#TODO bindings
 #TODO GUI data entry
 #TODO thumbnails
-#TODO closing a window shouldn't delete it
 
 array set img {}
 array set tag {}
@@ -97,6 +95,7 @@ proc add_glyph {path name tags desc} {
 
 proc click_gly {name ico} {
 	wm manage .p.gly.$name.f
+	wm protocol .p.gly.$name.f WM_DELETE_WINDOW "wm forget .p.gly.$name.f"
 	wm iconphoto .p.gly.$name.f $ico
 	wm title .p.gly.$name.f $name
 }
